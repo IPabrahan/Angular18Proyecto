@@ -14,6 +14,11 @@
 </div>
 }
 @else{
+@if($state().type == "nationality"){
+<h1 class="text-center text-3xl mb-12 mt-12 underline">Recetas por paises</h1>
+}@else if($state().type == "category"){
+<h1 class="text-center text-3xl mb-12 mt-12 underline">Recetas por categorias</h1>
+}
 <ul class="max-w-md mx-auto bg-white rounded-lg shadow-md divide-y divide-gray-200">
 
     @for(item of $state().data; track item.name){

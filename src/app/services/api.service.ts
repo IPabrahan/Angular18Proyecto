@@ -51,10 +51,10 @@ export class ApiService {
       .pipe(map((res: any) => res.meals));
   }
 
-  getRecipesByid(id: string): Observable<Meal | undefined> {
+  getRecipesById(id: string): Observable<Meal | undefined> {
     return this.http.get(`${environment.api.viewRecipe}${id}`)
       .pipe(map((res: any) => {
-        if (res.meals && res.melas.length > 0)
+        if (res.meals && res.meals.length > 0)
           return res.meals[0]
         else
           return undefined
