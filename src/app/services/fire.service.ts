@@ -17,7 +17,7 @@ export class FireService {
 
   constructor() {
     this.itemCollection = this.firestore.collection(`user/${this.auth.userData.uid}/recipes`);
-    console.log(`user/${this.auth.userData.uid}/recipes`)
+    console.log(`${this.auth.userData.uid}`)
     this.items$ = this.itemCollection.valueChanges();
   }
 
@@ -38,15 +38,12 @@ export class FireService {
   }
 
   getRecipesWithID() {
-    return this.itemCollection.snapshotChanges().pipe(map((actions: any) => {
-      return {
-        meals: actions.map((a: any) => {
-          const data = a.payload.doc.data() as Recipe;
-          const idMeal = a.payload.doc.id; // Obtener el ID del documento
-          return { idMeal: idMeal, ...data }; // Devolver el ID junto con los datos
-        })
-      };
-    })
+    return this.itemCollection.snapshotChanges().pipe(map((actions: any) => actions.map((a: any) => {
+      const data = a.payload.doc.data() as Recipe;
+      const idMeal = a.payload.doc.id; // Obtener el ID del documento
+      return { idMeal: idMeal, ...data }; // Devolver el ID junto con los datos
+    }))
     );
   }
+
 }

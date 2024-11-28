@@ -23,13 +23,19 @@
     <ul class="space-y-4">
         @for(recipe of $state().data; track recipe.idMeal){
         <li class="flex items-center p-4 border rounded-lg shadow hover:bg-gray-100
-    transition cursor-pointer" (click)="goToRecipe(recipe.idMeal)">
+    transition cursor-pointer"
+            (click)="type != undefined? goToRecipe(recipe.idMeal) : goToFavoriteRecipe(recipe.idMeal)">
+
             <img [src]="recipe.strMealThumb" alt="{{ recipe.strMeal }}" class="h-16 w-16
     rounded-md mr-4">
             <div>
                 <h2 class="text-lg font-semibold">{{ recipe.strMeal }}</h2>
             </div>
+            @if(type==undefined){
+            }
         </li>
+        <div><button (click)="onDeleteRecipe(recipe.idMeal)"><i class="fa-regular fa-trash-can ml-8 "></i></button>
+        </div>
         }
     </ul>
 </div>

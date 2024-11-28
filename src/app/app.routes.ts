@@ -28,6 +28,9 @@ export const routes: Routes = [
         path: 'recipe/:id', loadComponent: () => import('./pages/view-recipe/view-recipe.component').then(m => m.ViewRecipeComponent)
     },
     {
+        path: 'favorite/:id', loadComponent: () => import('./pages/view-favorite-recipe/view-favorite-recipe.component').then(m => m.ViewFavoriteRecipeComponent)
+    },
+    {
         path: '', redirectTo: '/landing', pathMatch: 'full'
     },
     {

@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./public/cc8c4b4a9d.js"
+            ]
           },
           "configurations": {
             "production": {

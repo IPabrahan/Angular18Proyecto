@@ -50,10 +50,10 @@ export class ListRecipesComponent {
         request = this.api.getRecipesByCategory(this.subtype);
         break;
       case 'nationality':
-        request = this.api.getRecipesByCategory(this.subtype);
+        request = this.api.getRecipesByNationality(this.subtype);
         break;
       case undefined:
-        request = this.fire.getRecipes();
+        request = this.fire.getRecipesWithID();
         break;
       default:
         request = null;
@@ -88,6 +88,11 @@ export class ListRecipesComponent {
     this.router.navigate(['recipe', idMeal])
   }
 
+  goToFavoriteRecipe(idMeal: string) {
+    // navega/favorite/:id
+    this.router.navigate(['favorite', idMeal])
+  }
+
   openModal() {
     this.isModalOpen = true
     history.pushState({}, document.title)
@@ -101,4 +106,15 @@ export class ListRecipesComponent {
     }
     this.isModalOpen = false;
   }
+
+  onDeleteRecipe(idMeal: string): void {
+    this.fire.deleteRecipe(idMeal)
+      .then(() => {
+        console.log(`Receta con idMeal: ${idMeal} eliminada correctamente`);
+      })
+      .catch(error => {
+        console.error('Error al borrar la receta:', error);
+      });
+  }
+
 }

@@ -20,7 +20,10 @@ export class FormModalComponent {
   constructor() {
     this.recipeForm = this.fb.group({
       strMeal: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      strInstructions: new FormControl('')
+      strMealThumb: new FormControl(''),
+      strInstructions: new FormControl(''),
+      strIngredients: new FormControl(''),
+      strYoutube: new FormControl('')
     })
   }
 
